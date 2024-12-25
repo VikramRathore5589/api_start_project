@@ -1,5 +1,6 @@
-import 'package:api_start_project/providers/crypto_provider.dart';
-import 'package:api_start_project/screens/crypto_narket_screen.dart';
+import 'package:api_start_project/crypto/provider/crypto_provider.dart';
+import 'package:api_start_project/crypto/screen/crypto_market_screen.dart';
+import 'package:api_start_project/crypto/service/crypto_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => CryptoProvider(),
+          create: (context) => CryptoProvider(CryptoService()),
         )
       ],
       child: const MaterialApp(

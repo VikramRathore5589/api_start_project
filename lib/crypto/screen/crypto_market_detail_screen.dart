@@ -1,4 +1,4 @@
-import 'package:api_start_project/models/crypto_model.dart';
+import 'package:api_start_project/crypto/model/crypto_model.dart';
 import 'package:flutter/material.dart';
 
 class CryptoMarketDetailScreen extends StatelessWidget {

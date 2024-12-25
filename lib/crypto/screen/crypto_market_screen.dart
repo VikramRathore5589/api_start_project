@@ -1,8 +1,8 @@
-import 'package:api_start_project/models/crypto_model.dart';
-import 'package:api_start_project/providers/crypto_provider.dart';
-import 'package:api_start_project/screens/app_bar_widget.dart';
-import 'package:api_start_project/screens/crypto_market_detail_screen.dart';
-import 'package:api_start_project/ui_helper/ui_helper.dart';
+import 'package:api_start_project/crypto/model/crypto_model.dart';
+import 'package:api_start_project/crypto/provider/crypto_provider.dart';
+import 'package:api_start_project/core/app_bar_widget.dart';
+import 'package:api_start_project/crypto/screen/crypto_market_detail_screen.dart';
+import 'package:api_start_project/crypto/service/crypto_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +14,6 @@ class CryptoMarketScreen extends StatefulWidget {
 }
 
 class _CryptoMarketScreenState extends State<CryptoMarketScreen> {
-  final uiHelper = UiHelper();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class _CryptoMarketScreenState extends State<CryptoMarketScreen> {
       body: Consumer<CryptoProvider>(
         builder: (context, provider, child) {
           return FutureBuilder<List<CryptoModel>>(
-            future: provider.uiHelper.fetchCrypto(),
+            future: provider.cryptoService.fetchCrypto(),
             builder: (context, important) {
               if (important.connectionState == ConnectionState.waiting) {
                 return const Center(
@@ -63,7 +62,6 @@ class _CryptoMarketScreenState extends State<CryptoMarketScreen> {
                               const SizedBox(
                                 width: 7,
                               ),
-                              Text("${model.athChangePercentage.toString()}%"),
                             ],
                           ),
                           trailing: Column(
@@ -79,7 +77,7 @@ class _CryptoMarketScreenState extends State<CryptoMarketScreen> {
                                   ),
                                   const SizedBox(width: 5),
                                   Text(
-                                    model.currentPrice!.toStringAsFixed(2),
+                                    model.currentPrice!.toStringAsFixed(0),
                                     style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
